@@ -20,5 +20,5 @@ public interface DriveIO {
         public Rotation2d heading;
     }
     default void updateInputs(DriveIOInputs inputs){}
-    default void drive(double leftPower, double rightPower) {}  
+    default void drive(double leftPower, double rightPower) {}
 }

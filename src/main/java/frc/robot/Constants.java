@@ -22,4 +22,10 @@ public final class Constants {
   public static final double DRIVE_WHEEL_RADIUS = DRIVE_WHEEL_RADIUS_STOCK - TREAD_WARE_FACTOR;
 
   public static final double TRACK_WIDTH = Units.inchesToMeters(23.5);
+
+  public static final double DRIVE_MAX_SPEED = 3.0; // meters per second
+  public static final double DRIVE_MAX_ANGULAR_SPEED = 3.0; // radians per second
+
+  public static final double DRIVE_MAX_ACCELERATION = 3.0; // meters per second squared
+  public static final double DRIVE_MAX_ANGULAR_ACCELERATION = 3.0; // radians per second squared
 }

@@ -4,9 +4,8 @@
 
 package frc.robot.subsystems.drive;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotController;
@@ -54,9 +53,9 @@ public class DriveIOSim implements DriveIO {
 
         driveSim = DifferentialDrivetrainSim.createKitbotSim(
                 KitbotMotor.kDoubleNEOPerSide, // 2 CIMs per side.
-                KitbotGearing.k10p71,        // 10.71:1
-                KitbotWheelSize.kSixInch,    // 6" diameter wheels.
-                null                         // No measurement noise.
+                KitbotGearing.k10p71,          // 10.71:1
+                KitbotWheelSize.kSixInch,      // 6" diameter wheels.
+                null        // No measurement noise.
 );
 
         leftMotorFront = new PWMSparkMax(0);

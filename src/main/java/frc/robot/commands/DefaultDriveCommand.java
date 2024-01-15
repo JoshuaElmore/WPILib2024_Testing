@@ -27,7 +27,7 @@ public class DefaultDriveCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    subsystem.setSpeed(0, 0);
+    subsystem.setPowers(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,13 +35,13 @@ public class DefaultDriveCommand extends Command {
   public void execute() {
     wheelSpeeds = DifferentialDrive.arcadeDriveIK(Joystick.JoystickInput(xSpeed.getAsDouble(), 2, 0.02, .75),
         -Joystick.JoystickInput(zRotation.getAsDouble(), 2, 0.02, .75), false);
-    subsystem.setSpeed(wheelSpeeds.left, wheelSpeeds.right);
+    subsystem.setPowers(wheelSpeeds.left, wheelSpeeds.right);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    subsystem.setSpeed(0, 0);
+    subsystem.setPowers(0, 0);
   }
 
   // Returns true when the command should end.
