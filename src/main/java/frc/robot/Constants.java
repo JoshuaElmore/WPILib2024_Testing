@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
+
 public final class Constants {
   public static final boolean COMPETITION_MODE = false;
 
@@ -13,4 +15,11 @@ public final class Constants {
   public static final int TEST_CONTROLLER_PORT = 2;
 
   public static final int PDP_CAN_ID = 0;
+
+  public static final double DRIVE_GEAR_RADIO = 1.0/7.29;
+  public static final double DRIVE_WHEEL_RADIUS_STOCK = Units.inchesToMeters(4.0);
+  public static final double TREAD_WARE_FACTOR = Units.inchesToMeters(0.0);
+  public static final double DRIVE_WHEEL_RADIUS = DRIVE_WHEEL_RADIUS_STOCK - TREAD_WARE_FACTOR;
+
+  public static final double TRACK_WIDTH = Units.inchesToMeters(23.5);
 }

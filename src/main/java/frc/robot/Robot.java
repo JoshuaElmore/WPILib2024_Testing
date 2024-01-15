@@ -6,11 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import frc.robot.utility.AdvantageKitHelper;
 import frc.robot.utility.RobotIdentity;
 
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
+
+import static frc.robot.Constants.*;
 
 public class Robot extends LoggedRobot {
   private Command m_autonomousCommand;
@@ -25,9 +27,13 @@ public class Robot extends LoggedRobot {
   public void robotInit() {
         // Determine the robot identity
         RobotIdentity identity = RobotIdentity.getIdentity();
+
+
         System.out.println("=====Detected identity: " + identity);
 
-        Logger.recordMetadata("CompetitionMode", Boolean.toString(Constants.COMPETITION_MODE));
+        AdvantageKitHelper.setupLogger(COMPETITION_MODE);
+
+        Logger.recordMetadata("CompetitionMode", Boolean.toString(COMPETITION_MODE));
         Logger.recordMetadata("RobotIdentity", RobotIdentity.getIdentity().toString());
 
         Logger.start();

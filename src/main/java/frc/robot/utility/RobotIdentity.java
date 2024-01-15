@@ -16,7 +16,6 @@ public enum RobotIdentity {
             return ROBOT_2024;
         }
         
-
         // Otherwise we know we're running in a simulation
         return SIMULATION;
     }

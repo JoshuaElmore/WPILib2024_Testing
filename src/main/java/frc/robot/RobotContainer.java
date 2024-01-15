@@ -4,9 +4,13 @@
 
 package frc.robot;
 
-import static  frc.robot.Constants.*;
+import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.subsystems.drive.Drive;
+import frc.robot.utility.RobotIdentity;
+import frc.robot.utility.SubsystemFactory;
 
 public class RobotContainer {
 
@@ -18,18 +22,30 @@ public class RobotContainer {
   @SuppressWarnings({ "unused" })
   private final CommandXboxController testController = new CommandXboxController(TEST_CONTROLLER_PORT);
 
+  private RobotIdentity identity;
+
+  private Drive driveSubsystem;
+
+  private DefaultDriveCommand defaultDriveCommand;
 
   public RobotContainer() {
+    identity = RobotIdentity.getIdentity();
+
     createSubsystems(); // Create our subsystems.
     createCommands(); // Create our commands
     configureButtonBindings(); // Configure the button bindings
   }
+
   private void createSubsystems() {
+    driveSubsystem = SubsystemFactory.createDriveTrain(identity);
 
   }
 
   private void createCommands() {
-
+    defaultDriveCommand = new DefaultDriveCommand(driveSubsystem,
+        () -> driveController.getLeftTriggerAxis() - driveController.getRightTriggerAxis(),
+        () -> -driveController.getLeftX());
+    driveSubsystem.setDefaultCommand(defaultDriveCommand);
   }
 
   private void configureButtonBindings() {
