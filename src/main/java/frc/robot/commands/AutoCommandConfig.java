@@ -7,7 +7,7 @@ import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.subsystems.drive.Drive;
 
-public final class AutoCommandFactory {
+public final class AutoCommandConfig {
 
     public static void init(Drive drivetrain) {
 
@@ -36,7 +36,7 @@ public final class AutoCommandFactory {
 
     // Default constructor that just throws an exception if you attempt to create an
     // instace of this class.
-    private AutoCommandFactory() {
+    private AutoCommandConfig() {
         throw new UnsupportedOperationException("This is a static class, you cannot instantiate it.");
     }
 }

@@ -35,7 +35,8 @@ public class Drive extends SubsystemBase {
 
     io.updateInputs(inputs);
 
-    odometry = new DifferentialDriveOdometry(inputs.heading, inputs.leftPos, inputs.rightPos, new Pose2d(0.0, 0.0, new Rotation2d()));
+    odometry = new DifferentialDriveOdometry(inputs.heading, inputs.leftPos, inputs.rightPos,
+        new Pose2d(0.0, 0.0, new Rotation2d()));
 
     kinematics = new DifferentialDriveKinematics(trackWidth);
   }
@@ -64,6 +65,7 @@ public class Drive extends SubsystemBase {
   }
 
   public void setPowers(double leftSpeed, double rightSpeed) {
+    
     io.drive(leftSpeed, rightSpeed);
   }
 
@@ -71,6 +73,7 @@ public class Drive extends SubsystemBase {
 
     return kinematics.toChassisSpeeds(getWheelSpeed());
   }
+
   public DifferentialDriveWheelSpeeds getWheelSpeed() {
     return new DifferentialDriveWheelSpeeds(inputs.leftVel, inputs.rightVel);
   }

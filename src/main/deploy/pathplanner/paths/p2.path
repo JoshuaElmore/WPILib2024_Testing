@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.0,
-        "y": 2.5
+        "x": 7.118033988749895,
+        "y": 3.0
       },
       "isLocked": false,
       "linkedName": "Edge1"
@@ -68,8 +68,8 @@
         "y": 1.1371455541924649
       },
       "prevControl": {
-        "x": 9.728513859000595,
-        "y": 1.432876059340282
+        "x": 9.761849341436722,
+        "y": 1.137145554192465
       },
       "nextControl": null,
       "isLocked": false,
@@ -90,7 +90,7 @@
     "rotation": 0,
     "rotateFast": false
   },
-  "reversed": false,
+  "reversed": true,
   "folder": null,
   "previewStartingState": null,
   "useDefaultConstraints": false

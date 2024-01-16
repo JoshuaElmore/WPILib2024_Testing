@@ -11,7 +11,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.AutoCommandFactory;
+import frc.robot.commands.AutoCommandConfig;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.utility.AutoCommandChooser;
@@ -48,7 +48,7 @@ public class RobotContainer {
   private void createSubsystems() {
     driveSubsystem = SubsystemFactory.createDriveTrain(identity);
 
-    AutoCommandFactory.init(driveSubsystem);
+    AutoCommandConfig.init(driveSubsystem);
 
   }
 

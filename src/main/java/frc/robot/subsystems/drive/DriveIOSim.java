@@ -70,21 +70,21 @@ public class DriveIOSim implements DriveIO {
         driveSim.update(0.02);
 
         // Update all of our sensors.
-        leftEncoderSim.setDistance(driveSim.getLeftPositionMeters());
-        leftEncoderSim.setRate(driveSim.getLeftVelocityMetersPerSecond());
+        leftEncoderSim.setDistance(-driveSim.getLeftPositionMeters());
+        leftEncoderSim.setRate(-driveSim.getLeftVelocityMetersPerSecond());
 
-        rightEncoderSim.setDistance(driveSim.getRightPositionMeters());
-        rightEncoderSim.setRate(driveSim.getRightVelocityMetersPerSecond());
+        rightEncoderSim.setDistance(-driveSim.getRightPositionMeters());
+        rightEncoderSim.setRate(-driveSim.getRightVelocityMetersPerSecond());
 
         gyroSim.setAngle(-driveSim.getHeading().getDegrees());
 
         inputs.isBrake = false;
         inputs.leftCurent = 0;
         inputs.rightCurent = 0;
-        inputs.leftPos = -leftEncoder.getDistance();
-        inputs.rightPos = -rightEncoder.getDistance();
-        inputs.leftVel = -leftEncoder.getRate();
-        inputs.rightVel = -rightEncoder.getRate();
+        inputs.leftPos = leftEncoder.getDistance();
+        inputs.rightPos = rightEncoder.getDistance();
+        inputs.leftVel = leftEncoder.getRate();
+        inputs.rightVel = rightEncoder.getRate();
         inputs.leftPower = leftMotorFront.get();
         inputs.rightPower = rightMotorFront.get();
         inputs.heading = Rotation2d.fromDegrees(-gyro.getAngle());
