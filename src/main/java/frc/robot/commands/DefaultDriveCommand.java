@@ -33,7 +33,7 @@ public class DefaultDriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    wheelSpeeds = DifferentialDrive.arcadeDriveIK(Joystick.JoystickInput(xSpeed.getAsDouble(), 2, 0.02, .75),
+    wheelSpeeds = DifferentialDrive.arcadeDriveIK(-Joystick.JoystickInput(xSpeed.getAsDouble(), 2, 0.02, .75),
         -Joystick.JoystickInput(zRotation.getAsDouble(), 2, 0.02, .75), false);
     subsystem.setPowers(wheelSpeeds.left, wheelSpeeds.right);
   }

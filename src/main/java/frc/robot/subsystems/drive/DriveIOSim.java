@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.drive;
 
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
@@ -65,8 +64,8 @@ public class DriveIOSim implements DriveIO {
     }
 
     public void updateInputs(DriveIOInputs inputs) {
-        driveSim.setInputs(leftMotorFront.get() * RobotController.getInputVoltage(),
-                rightMotorFront.get() * RobotController.getInputVoltage());
+        driveSim.setInputs(-leftMotorFront.get() * RobotController.getInputVoltage(),
+                -rightMotorFront.get() * RobotController.getInputVoltage());
 
         driveSim.update(0.02);
 
@@ -77,25 +76,25 @@ public class DriveIOSim implements DriveIO {
         rightEncoderSim.setDistance(driveSim.getRightPositionMeters());
         rightEncoderSim.setRate(driveSim.getRightVelocityMetersPerSecond());
 
-        gyroSim.setAngle(driveSim.getHeading().getDegrees());
+        gyroSim.setAngle(-driveSim.getHeading().getDegrees());
 
         inputs.isBrake = false;
         inputs.leftCurent = 0;
         inputs.rightCurent = 0;
-        inputs.leftPos = leftEncoder.getDistance();
-        inputs.rightPos = rightEncoder.getDistance();
-        inputs.leftVel = leftEncoder.getRate();
-        inputs.rightVel = rightEncoder.getRate();
+        inputs.leftPos = -leftEncoder.getDistance();
+        inputs.rightPos = -rightEncoder.getDistance();
+        inputs.leftVel = -leftEncoder.getRate();
+        inputs.rightVel = -rightEncoder.getRate();
         inputs.leftPower = leftMotorFront.get();
         inputs.rightPower = rightMotorFront.get();
-        inputs.heading = Rotation2d.fromDegrees(gyro.getAngle());
+        inputs.heading = Rotation2d.fromDegrees(-gyro.getAngle());
 
     }
 
     public void drive(double leftPower, double rightPower) {
-        leftMotorFront.set(-leftPower);
-        leftMotorBack.set(-leftPower);
-        rightMotorFront.set(-rightPower);
-        rightMotorBack.set(-rightPower);
+        leftMotorFront.set(leftPower);
+        leftMotorBack.set(leftPower);
+        rightMotorFront.set(rightPower);
+        rightMotorBack.set(rightPower);
     }
 }

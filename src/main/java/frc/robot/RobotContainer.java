@@ -5,11 +5,16 @@
 package frc.robot;
 
 import static frc.robot.Constants.*;
+
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AutoCommandFactory;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.subsystems.drive.Drive;
+import frc.robot.utility.AutoCommandChooser;
 import frc.robot.utility.RobotIdentity;
 import frc.robot.utility.SubsystemFactory;
 
@@ -29,16 +34,21 @@ public class RobotContainer {
 
   private DefaultDriveCommand defaultDriveCommand;
 
+  private AutoCommandChooser autoChooser;
+
   public RobotContainer() {
     identity = RobotIdentity.getIdentity();
 
     createSubsystems(); // Create our subsystems.
     createCommands(); // Create our commands
     configureButtonBindings(); // Configure the button bindings
+    setupAutoChooser(); // Setup the auto chooser
   }
 
   private void createSubsystems() {
     driveSubsystem = SubsystemFactory.createDriveTrain(identity);
+
+    AutoCommandFactory.init(driveSubsystem);
 
   }
 
@@ -54,7 +64,22 @@ public class RobotContainer {
     driveController.back().onTrue(new InstantCommand(() -> driveSubsystem.resetGyro()));
   }
 
+  private void setupAutoChooser() {
+    autoChooser = new AutoCommandChooser();
+
+    // Register all the supported auto commands
+    autoChooser.registerDefaultCreator("Do Nothing", null);
+
+    // Test auto commands that we only register with the chooser if we are not running in competition
+    if (!Constants.COMPETITION_MODE) {
+        autoChooser.registerCreator("Test", () -> new PathPlannerAuto("TestAuto"));
+    }
+
+    // Setup the chooser in shuffleboard
+    autoChooser.setup("Driver", 0, 0, 3, 1);
+}
+
   public Command getAutonomousCommand() {
-    return null;
+    return autoChooser.getAutonomousCommand();
   }
 }
